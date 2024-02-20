@@ -1,4 +1,7 @@
-//! Renders two cameras to the same window to accomplish "split screen".
+//! Renders four cameras to the same window to accomplish "split screen".
+//!
+//! The screen is divided into 4 quadrants, each with its own camera. This is typically
+//! used for local co-op ("couch co-op") in games up to 4 players.
 
 use std::f32::consts::PI;
 
@@ -78,6 +81,7 @@ fn setup(
                     },
                     ..default()
                 },
+                // Camera quadrant position on screen: (0,0) top left -> (1,1) bottom right
                 CameraPosition {
                     pos: UVec2::new((index % 2) as u32, (index / 2) as u32),
                 },
@@ -164,6 +168,7 @@ fn setup(
 
 #[derive(Component)]
 struct CameraPosition {
+    /// Quadrant of this camera. (0,0) top left -> (1,1) bottom right
     pos: UVec2,
 }
 
